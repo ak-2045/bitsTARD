@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>bitsTARD</title>
+<link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/BITS_Pilani-Logo.svg/250px-BITS_Pilani-Logo.svg.png">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:       #0a0a0f;
+    --bg2:      #0f0f18;
+    --bg3:      #141422;
+    --card:     #13131e;
+    --border:   #1e1e30;
+    --border2:  #2a2a42;
+    --accent:   #5b6af0;
+    --accent2:  #7c89ff;
+    --glow:     rgba(91,106,240,.18);
+    --gold:     #e8c96a;
+    --green:    #3ecf8e;
+    --red:      #f06060;
+    --text:     #e8e8f0;
+    --muted:    #7070a0;
+    --mono:     'JetBrains Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+  section { padding: 72px 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  .hero {
+    padding: 100px 0 64px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-glow {
+    position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(91,106,240,.13) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    border: 1px solid var(--border2);
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    background: rgba(91,106,240,.06);
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 7vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    background: linear-gradient(135deg, #fff 30%, var(--accent2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+  }
+  .hero p {
+    max-width: 580px;
+    margin: 0 auto 36px;
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+  .disclaimer-box {
+    max-width: 640px; margin: 0 auto;
+    background: rgba(232,201,106,.05);
+    border: 1px solid rgba(232,201,106,.2);
+    border-radius: 12px;
+    padding: 16px 22px;
+    font-size: .84rem;
+    color: rgba(232,201,106,.8);
+    line-height: 1.6;
+    text-align: left;
+  }
+  .disclaimer-box strong { color: var(--gold); }
+
+  .sec-label {
+    font-family: var(--mono);
+    font-size: .7rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .sec-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    margin-bottom: 8px;
+  }
+  .sec-sub {
+    color: var(--muted);
+    font-size: .92rem;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+
+  .range-grid {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 32px;
+  }
+  .range-btn {
+    font-family: var(--mono);
+    font-size: .78rem;
+    padding: 9px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border2);
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .2s;
+    letter-spacing: .04em;
+  }
+  .range-btn:hover { border-color: var(--accent); color: var(--accent2); background: var(--glow); }
+  .range-btn.active { border-color: var(--accent); color: var(--accent2); background: rgba(91,106,240,.12); box-shadow: 0 0 0 1px var(--accent); }
+
+  #cutoff-results { min-height: 80px; }
+
+  .campus-group { margin-bottom: 36px; }
+  .campus-group-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .campus-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    display: inline-block;
+  }
+  .dot-pilani { background: var(--gold); }
+  .dot-goa    { background: var(--green); }
+  .dot-hyd    { background: var(--accent2); }
+
+  .program-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+    transition: border-color .2s;
+    flex-wrap: wrap;
+  }
+  .program-card:hover { border-color: var(--border2); }
+  .program-name { font-size: .92rem; font-weight: 500; flex: 1; min-width: 180px; }
+  .scores-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .score-chip {
+    font-family: var(--mono);
+    font-size: .75rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border);
+  }
+  .score-chip .yr { color: var(--muted); font-size: .68rem; }
+  .score-chip .val { color: var(--text); font-weight: 500; }
+  .no-results {
+    text-align: center;
+    color: var(--muted);
+    padding: 40px 0;
+    font-size: .92rem;
+  }
+  .na { color: var(--muted); font-style: italic; font-size: .8rem; }
+
+  .campus-tabs {
+    display: flex; gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    width: fit-content;
+  }
+  .campus-tab {
+    padding: 10px 24px;
+    font-size: .85rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--card);
+    color: var(--muted);
+    border: none;
+    transition: all .2s;
+  }
+  .campus-tab.active { background: var(--accent); color: #fff; }
+  .campus-tab:hover:not(.active) { color: var(--text); background: var(--bg3); }
+
+  .placement-panel { display: none; }
+  .placement-panel.active { display: block; }
+
+  .pilani-sky {
+    border: 1px solid rgba(232,201,106,.2);
+    background: linear-gradient(135deg, rgba(232,201,106,.04), rgba(91,106,240,.04));
+    border-radius: 16px;
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .pilani-sky .sky-icon { font-size: 2.5rem; margin-bottom: 16px; }
+  .pilani-sky h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .pilani-sky p { color: var(--muted); font-size: .9rem; max-width: 400px; margin: 0 auto; }
+
+  .placement-table-wrap { overflow-x: auto; }
+  .placement-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .88rem;
+  }
+  .placement-table th {
+    font-family: var(--mono);
+    font-size: .7rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 16px;
+    text-align: left;
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+  }
+  .placement-table td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    background: var(--card);
+  }
+  .placement-table tr:last-child td { border-bottom: none; }
+  .placement-table tr:hover td { background: var(--bg3); }
+  .placement-table .num { font-family: var(--mono); text-align: right; }
+  .tag-domain {
+    display: inline-block;
+    font-size: .74rem;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    background: rgba(91,106,240,.1);
+    border: 1px solid rgba(91,106,240,.2);
+    color: var(--accent2);
+  }
+
+  .hyd-year-cards { display: flex; flex-direction: column; gap: 12px; }
+  .hyd-year-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    transition: border-color .2s;
+  }
+  .hyd-year-card:hover { border-color: var(--border2); }
+  .hyd-year-label {
+    font-family: var(--mono);
+    font-size: .72rem;
+    color: var(--muted);
+    letter-spacing: .08em;
+    margin-bottom: 14px;
+  }
+  .hyd-branches { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hyd-branch {
+    flex: 1; min-width: 100px;
+    background: var(--bg3);
+    border-radius: 9px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+  }
+  .hyd-branch .bname { font-size: .78rem; color: var(--muted); margin-bottom: 4px; }
+  .hyd-branch .bval { font-family: var(--mono); font-size: 1.05rem; font-weight: 500; color: var(--accent2); }
+  .hyd-branch .bunit { font-size: .68rem; color: var(--muted); }
+
+  .dual-cta {
+    background: linear-gradient(135deg, rgba(91,106,240,.08), rgba(62,207,142,.05));
+    border: 1px solid rgba(91,106,240,.25);
+    border-radius: 16px;
+    padding: 40px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .dual-cta-icon { font-size: 2.8rem; flex-shrink: 0; }
+  .dual-cta-text h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .dual-cta-text p { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    padding: 12px 26px;
+    border-radius: 9px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: .9rem;
+    text-decoration: none;
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: background .2s, transform .15s;
+  }
+  .cta-btn:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .faq-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .faq-item:hover { border-color: var(--border2); }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 22px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: .93rem;
+    user-select: none;
+    list-style: none;
+  }
+  .faq-q .icon {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .75rem;
+    color: var(--accent2);
+    transition: transform .25s, background .2s;
+    margin-top: 2px;
+  }
+  .faq-item.open .faq-q .icon { transform: rotate(45deg); background: var(--accent); border-color: var(--accent); color: #fff; }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height .3s cubic-bezier(.4,0,.2,1), padding .3s;
+    padding: 0 22px;
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.75;
+  }
+  .faq-item.open .faq-a { max-height: 400px; padding: 0 22px 20px; }
+  .source-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: .78rem;
+    color: var(--accent2);
+    text-decoration: none;
+    margin-top: 12px;
+    border: 1px solid rgba(91,106,240,.25);
+    background: rgba(91,106,240,.06);
+    padding: 5px 12px;
+    border-radius: 6px;
+    transition: background .2s;
+    font-family: var(--mono);
+  }
+  .source-link:hover { background: rgba(91,106,240,.14); }
+
+  .opinion-header { margin-bottom: 28px; }
+  .ranking-strip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .rank-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: .85rem;
+  }
+  .rank-badge {
+    font-family: var(--mono);
+    font-size: .72rem;
+    padding: 3px 9px;
+    border-radius: 5px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .rank-1 { background: rgba(232,201,106,.12); border: 1px solid rgba(232,201,106,.3); color: var(--gold); }
+  .rank-2 { background: rgba(62,207,142,.08); border: 1px solid rgba(62,207,142,.2); color: var(--green); }
+  .rank-3 { background: rgba(91,106,240,.08); border: 1px solid rgba(91,106,240,.2); color: var(--accent2); }
+  .rank-sep { color: var(--muted); font-size: .85rem; }
+  .rank-eq { color: var(--muted); font-size: 1rem; }
+
+  .opinion-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+  @media (max-width: 600px) { .opinion-cards { grid-template-columns: 1fr; } }
+  .opin-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .opin-card .oc-icon { font-size: 1.4rem; margin-bottom: 8px; }
+  .opin-card h4 { font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 700; margin-bottom: 6px; }
+  .opin-card p { font-size: .84rem; color: var(--muted); line-height: 1.65; }
+
+  .career-paths { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+  .cp-row {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    flex-wrap: wrap;
+  }
+  .cp-badge {
+    font-family: var(--mono);
+    font-size: .74rem;
+    white-space: nowrap;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .cp-4yr { background: rgba(91,106,240,.1); border: 1px solid rgba(91,106,240,.2); color: var(--accent2); }
+  .cp-5yr { background: rgba(62,207,142,.08); border: 1px solid rgba(62,207,142,.2); color: var(--green); }
+  .cp-desc { font-size: .84rem; color: var(--muted); flex: 1; }
+  .cp-arrow { color: var(--border2); margin: 0 4px; }
+
+  .luck-box {
+    background: rgba(240,96,96,.04);
+    border: 1px solid rgba(240,96,96,.18);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: .87rem;
+    color: rgba(240,96,96,.8);
+    line-height: 1.65;
+  }
+  .luck-box strong { color: var(--red); }
+
+  .video-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  .video-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color .2s, transform .2s;
+  }
+  .video-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .video-card .vc-label {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 18px 10px;
+  }
+  .vc-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .vc-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .95rem; }
+  .vc-sub { font-size: .78rem; color: var(--muted); margin-left: auto; }
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+  }
+  .video-wrap iframe {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: .8rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+  }
+  .nav-inner {
+    max-width: 900px; margin: 0 auto; padding: 0 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: -.01em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent2); }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    font-size: .8rem;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 7px;
+    transition: color .2s, background .2s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--bg3); }
+
+  .fade-in {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity .55s ease, transform .55s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    section { padding: 52px 0; }
+    .dual-cta { flex-direction: column; }
+    .cta-btn { margin-left: 0; }
+    .campus-tabs { width: 100%; }
+    .campus-tab { flex: 1; padding: 10px 10px; font-size: .78rem; }
+    .program-card { flex-direction: column; align-items: flex-start; }
+    .pilani-sky { padding: 28px 20px; }
+    .ranking-strip { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">bits<span>TARD</span></a>
+    <div class="nav-links">
+      <a href="#cutoffs">Cutoffs</a>
+      <a href="#placements">Placements</a>
+      <a href="#dual">Dual Degree</a>
+      <a href="#faq">FAQ</a>
+      <a href="#campus">Campus Life</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-tag">Pilani · Goa · Hyderabad</div>
+
+    <h1>
+      JEE Hilani.<br/>
+      IIT Milani.<br/>
+      BITS Pilani.
+    </h1>
+<p>
+  Not anymore. BITS today is a mix of ambitious log, crazy placements, startup culture, sleepless exam weeks, coding grind, fest chaos, dual degree confusion, and students trying to balance academics, clubs, internships aur social life — sab ek saath.
+</p>
+
+<div class="disclaimer-box">
+  <strong>Quick check:</strong>
+  BITS Pilani does not officially publish detailed branch-wise placement statistics. Most of the numbers here are collected from student discussions, alumni insights, LinkedIn profiles, placement brochures, and community platforms like Reddit. They should give you a fairly realistic idea — just don’t treat them like official guarantees carved in stone.
+</div>
+  </div>
+</div>
+
+<section id="cutoffs">
+  <div class="container fade-in">
+    <div class="sec-label">// explore</div>
+    <h2 class="sec-title">Cutoff Score Finder</h2>
+    <p class="sec-sub">
+  Pick your score range to see which branches you realistically have a shot at across Pilani, Goa, and Hyderabad — based on 2025 cutoff trends.
+</p>
+    <div class="range-grid">
+      <button class="range-btn" onclick="filterRange('below200')">Below 200</button>
+      <button class="range-btn" onclick="filterRange('200-210')">200 – 210</button>
+      <button class="range-btn" onclick="filterRange('210-220')">210 – 220</button>
+      <button class="range-btn" onclick="filterRange('220-230')">220 – 230</button>
+      <button class="range-btn" onclick="filterRange('230-240')">230 – 240</button>
+      <button class="range-btn" onclick="filterRange('240-250')">240 – 250</button>
+      <button class="range-btn" onclick="filterRange('above250')">Above 250</button>
+    </div>
+
+    <div id="cutoff-results">
+      <p class="no-results">Select a score range above to see eligible programs.</p>
+    </div>
+  </div>
+</section>
+
+<section id="placements">
+  <div class="container fade-in">
+    <div class="sec-label">// outcomes</div>
+    <h2 class="sec-title">Placement Report</h2>
+    <p class="sec-sub">A snapshot of how graduates from each campus are landing roles across domains.</p>
+
+    <div class="campus-tabs">
+      <button class="campus-tab active" onclick="showPlacement('pilani', this)">Pilani</button>
+      <button class="campus-tab" onclick="showPlacement('goa', this)">Goa</button>
+      <button class="campus-tab" onclick="showPlacement('hyd', this)">Hyderabad</button>
+    </div>
+
+<div class="placement-panel active" id="pl-pilani">
+
+    <p style="color:var(--muted);font-size:.82rem;margin-bottom:16px;font-family:var(--mono);">
+      // We seriously even comparing this?
+    </p>
+
+  <div class="pilani-sky">
+    <div class="sky-icon">✦</div>
+
+    <h3>Sky is the Limit.</h3>
+
+    <p style="text-align:justify;">
+      Pilani consistently sees some of the strongest placement outcomes across all three campuses. Between the alumni network, recruiter reputation, and sheer legacy factor, opportunities here tend to scale really high. For a lot of aspirants, this is the campus they picture first when they hear the word “BITS”.
+    </p>
+
+  </div>
+</div>
+
+    <!-- Goa -->
+    <div class="placement-panel" id="pl-goa">
+      <p style="color:var(--muted);font-size:.82rem;margin-bottom:16px;font-family:var(--mono);">// Academic Year 2025–26</p>
+      <div class="placement-table-wrap">
+        <table class="placement-table">
+          <thead>
+            <tr>
+              <th>Domain</th>
+              <th class="num">Avg CTC (LPA)</th>
+              <th class="num">Median CTC (LPA)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="tag-domain">IT</span></td><td class="num">24</td><td class="num">21</td></tr>
+            <tr><td><span class="tag-domain">Electronics</span></td><td class="num">26</td><td class="num">27</td></tr>
+            <tr><td><span class="tag-domain">Consulting & Finance</span></td><td class="num">14</td><td class="num">13</td></tr>
+            <tr><td><span class="tag-domain">Core Mech + Chem</span></td><td class="num">11</td><td class="num">9</td></tr>
+            <tr><td><span class="tag-domain">Product</span></td><td class="num">20</td><td class="num">21</td></tr>
+            <tr><td><span class="tag-domain">Finance</span></td><td class="num">18</td><td class="num">18</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="placement-panel" id="pl-hyd">
+      <p style="color:var(--muted);font-size:.82rem;margin-bottom:18px;font-family:var(--mono);">// Branch-wise averages across years</p>
+      <div class="hyd-year-cards">
+        <div class="hyd-year-card">
+          <div class="hyd-year-label">2021 – 2022</div>
+          <div class="hyd-branches">
+            <div class="hyd-branch"><div class="bname">ECE</div><div class="bval">19.38 <span class="bunit">LPA</span></div></div>
+            <div class="hyd-branch"><div class="bname">EEE</div><div class="bval">18.85 <span class="bunit">LPA</span></div></div>
+            <div class="hyd-branch"><div class="bname">E&I</div><div class="bval">18.73 <span class="bunit">LPA</span></div></div>
+          </div>
+        </div>
+        <div class="hyd-year-card">
+          <div class="hyd-year-label">2022 – 2023</div>
+          <div class="hyd-branches">
+            <div class="hyd-branch"><div class="bname">ECE</div><div class="bval">21.68 <span class="bunit">LPA</span></div></div>
+            <div class="hyd-branch"><div class="bname">EEE</div><div class="bval">21.32 <span class="bunit">LPA</span></div></div>
+            <div class="hyd-branch"><div class="bname">E&I</div><div class="bval">20.22 <span class="bunit">LPA</span></div></div>
+          </div>
+        </div>
+        <div class="hyd-year-card" style="border-color:rgba(91,106,240,.3);">
+          <div class="hyd-year-label">2023 – 2024 <span style="color:var(--accent2)">(latest)</span></div>
+          <div class="hyd-branches">
+            <div class="hyd-branch" style="border-color:rgba(91,106,240,.2)"><div class="bname">ECE</div><div class="bval">23.46 <span class="bunit">LPA</span></div></div>
+            <div class="hyd-branch" style="border-color:rgba(91,106,240,.2)"><div class="bname">EEE</div><div class="bval">21.33 <span class="bunit">LPA</span></div></div>
+            <div class="hyd-branch" style="border-color:rgba(91,106,240,.2)"><div class="bname">E&I</div><div class="bval">22.80 <span class="bunit">LPA</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dual">
+  <div class="container fade-in">
+
+    <div class="sec-label">// dual degree</div>
+
+    <h2 class="sec-title">
+      The Dual Degree Route
+    </h2>
+
+    <p class="sec-sub">
+      A 5-year M.Sc. + B.E. program that many students choose to enter BITS at a comparatively lower cutoff — with a chance to get branches like CS or MnC later based on first-year CGPA.
+    </p>
+
+    <div class="dual-cta">
+
+      <div class="dual-cta-text">
+
+        <h3>
+          Is taking a Dual Degree actually worth it?
+        </h3>
+
+        <p>
+          It’s not just “one extra year”. There’s CG pressure, branch competition, internships, flexibility, and a very different experience depending on what someone wants from college. This guide covers how the system works, student experiences, campus dynamics, and the real pros and cons of taking the dual route in 2026.
+        </p>
+
+      </div>
+<a href="./dual_degree.html" class="cta-btn">
+  Explore Dual Degree
+  <i data-lucide="arrow-right"></i>
+</a>
+
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container fade-in">
+    <div class="sec-label">// common questions</div>
+    <h2 class="sec-title">FAQ</h2>
+    <p class="sec-sub">Answers sourced from the BITS community — no sugarcoating.</p>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What's the difference between ECE / EEE / ENI?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          Honestly, nothing significant. All the Phoenix students will have the entire 2nd year in common, as well as a few 3rd year courses. All the branches differ by at most 3–4 courses, which you can also take as electives. Moreover, their average packages differ by about 2 lakhs at max, further strengthening my point. I'd recommend treating all of them as equivalent and prioritising them on the basis of campus.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Is taking a Dual worth it?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          Depends on person to person. If you have enough capital and are a sincere student who doesn't think of studying as a burden, it should be worth it, as you'll get branches like CS/MnC at a much lower entrance exam score. All this provided you get close to 8 CGPA in the first year, which isn't very hard, but that doesn't mean you'll slack off. Assuming that you did slack off, the cutoff for ENI should be around 6.8 for Goa, so you should at least end up with an electronics branch, if not anything better.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How many dualites get CS?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          Well, Goa has close to 340 dualites as of now, out of which around 90–95 will get CS. Around 270–290 (or even more) dualites will end up with circuital branches, which is a great percentage of people.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>How easy is it to score 8+ in the first year?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          Fairly easy; you need a B grade (usually awarded at average +10–15) in all your subjects to be an 8-pointer. Some courses, such as GenChem (which is just JEE Chemistry), are fairly easy to score an A in, whereas labs are mostly an easy A- if not A, so it shouldn't be very challenging to score a CG good enough for CS in the first year (again, provided you're a sincere student, which you should be able to gauge by yourselves now that you've been through the JEE rat race).
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Is Electronics difficult?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          Yes, compared to other branches on campus, the workload is higher. The grading is also a little unfair and more on the worse side (but it might change for Goa since the HoD was recently changed). But maintaining a good CG (8+ if not 8.5+) is, again, not a mammoth task. I know a few seniors in Goa phoenix who have good enough CGPA in spite of being in a Phoenix branch. It all depends on how serious you are and your interest towards academics.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>So, an MSc or Electronics?</span>
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-a">
+          Well, if you think you'd like another chance at getting a branch like CS, have enough capital to afford the 5 year fees comfortably, and are willing to work for it in the first year, then MSc is a great option. Worst case you'll end up with an electronics branch, which is still great RoI. If you prefer enjoying the first year of your college life and being stress-free or aren't willing to pay that much money, Electronics is the way to go.
+          <br/><br/>
+          
+        </div>
+      </div>
+
+      <a href="https://www.reddit.com/r/BITSPilani/comments/1d5e7ah/a_dual_degree_vs_eceeeeeni_what_to_choose/" target="_blank" class="source-link">↗ View original thread on Reddit</a>
+    </div>
+  </div>
+</section>
+
+
+<section id="opinion"> 
+  <div class="container fade-in">
+
+    <div class="sec-label">// community take</div>
+
+    <h2 class="sec-title">
+      <i data-lucide="messages-square"></i>
+      A Third Perspective
+    </h2>
+
+    <p class="sec-sub">
+      Not official advice. Not career counselling. Just one overthinking person trying to stop others from choosing colleges purely based on cinematic hostel edits and “BITS Goa campus tour” reels.
+    </p>
+
+    <div class="ranking-strip">
+
+      <div class="rank-item">
+        <span class="rank-badge rank-1">
+          Pilani Mech + MBA
+        </span>
+      </div>
+
+      <span class="rank-sep">&gt;&gt;</span>
+
+      <div class="rank-item">
+        <span class="rank-badge rank-2">
+          Goa ENI
+        </span>
+      </div>
+
+      <span class="rank-sep">&gt;&gt;</span>
+
+      <div class="rank-item">
+        <span class="rank-badge rank-3">
+          Hyd EIE / EEE
+        </span>
+      </div>
+
+      <span class="rank-sep">&gt;&gt;</span>
+
+      <div class="rank-item" style="font-size:.83rem;color:var(--muted);">
+        Goa MSc. Eco <span class="rank-eq">~</span> Goa Mech
+      </div>
+
+    </div>
+
+    <div class="opinion-cards">
+
+      <div class="opin-card">
+
+        <div class="oc-icon">
+          <i data-lucide="flask-conical"></i>
+        </div>
+
+        <h4>Mech is not “lite”</h4>
+
+        <p>
+          Mechanical sounds chill until you realize half your week disappears into labs, workshops, submissions, and surprise quizzes. Trying to manage coding prep alongside that is basically a test of character.
+        </p>
+
+      </div>
+
+      <div class="opin-card">
+
+        <div class="oc-icon">
+          <i data-lucide="graduation-cap"></i>
+        </div>
+
+        <h4>MBA route is underrated</h4>
+
+        <p>
+          A good MBA after 1–2 years of work experience can genuinely change your career trajectory. But yes, if your dual upgrades into CS/MnC/ECE, suddenly everyone starts saying “bro you’ve already won in life”.
+        </p>
+
+      </div>
+
+    </div>
+
+   <div class="career-paths">
+
+  <div class="cp-row">
+
+    <span class="cp-badge cp-4yr">
+      4-yr B.Tech
+    </span>
+
+    <span class="cp-desc">
+      15–20 LPA job 
+      <span class="cp-arrow">→</span>
+
+      1–2 years work-ex 
+      <span class="cp-arrow">→</span>
+
+      Strong MBA profile becomes much easier 
+      <span class="cp-arrow">→</span>
+
+      Start post-MBA around 25–30 LPA
+    </span>
+
+  </div>
+
+  <div class="cp-row">
+
+    <span class="cp-badge cp-5yr">
+      5-yr B.Tech + MSc
+    </span>
+
+    <span class="cp-desc">
+      20+ LPA placements 
+      <span class="cp-arrow">→</span>
+
+      1–2 years work-ex 
+      <span class="cp-arrow">→</span>
+
+      MBA becomes optional instead of necessary 
+      <span class="cp-arrow">→</span>
+
+      Career can easily be amplified to 30+ LPA post MBA
+    </span>
+
+  </div>
+
+  <div class="cp-row">
+
+    <span class="cp-badge cp-5yr">
+      Dual Degree
+    </span>
+
+    <span class="cp-desc">
+      If your dual slides into CS / MnC / ECE, 
+      it can completely change your career trajectory. At that point, many people skip the MBA route entirely because the opportunities are already strong enough.
+    </span>
+
+  </div>
+
+</div>
+
+    <div class="luck-box">
+      <strong>Hard work matters. Luck matters too.</strong>
+
+      Sometimes the market is great. Sometimes companies disappear overnight. Sometimes your dream company hires 2 people and both have been doing competitive coding since class 8. Plan properly, but always keep backup options.
+
+    </div>
+
+  </div>
+</section>
+
+
+
+<section id="campus">
+  <div class="container fade-in">
+    <div class="sec-label">// feel the vibe</div>
+    <h2 class="sec-title">Campus Life</h2>
+    <p class="sec-sub">Numbers only tell half the story. See what life actually looks like at each campus.</p>
+
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="vc-label">
+          <span class="vc-dot dot-pilani"></span>
+          <span class="vc-name">Pilani</span>
+          <span class="vc-sub">Pilani · The OG</span>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/VYKW3pjmzGc?si=ypASGZ7U8ZlZX8lD" title="BITS Pilani campus life" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="vc-label">
+          <span class="vc-dot dot-goa"></span>
+          <span class="vc-name">Goa</span>
+          <span class="vc-sub">Zuarinagar · Coastal & Chill</span>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/f04VHi5lC0Y?si=UEEPE2wOHoIlGWEJ" title="BITS Goa campus life" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="vc-label">
+          <span class="vc-dot dot-hyd"></span>
+          <span class="vc-name">Hyderabad</span>
+          <span class="vc-sub">Secunderabad · Modern & Growing</span>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/kAMvMTNgjfI?si=KSo3yMnC6LY50FQt" title="BITS Hyderabad campus life" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+
+    <p 
+      title="Built for Rayhaan Hossain. Data gathered from public/community sources. Not affiliated with BITS Pilani. Logos and trademarks belong to their respective owners."
+      style="cursor:help;"
+    >
+      Built for Rayhaan Hossain · Community sourced data · Not officially affiliated with BITS
+    </p>
+
+  </div>
+</footer>
+
+<script>
+lucide.createIcons();
+
+
+const cutoffData = [
+
+{campus:"Pilani",program:"B.E. Chemical",cutoff_score_2025:210,cutoff_score_2024:247,cutoff_score_2023:224},
+{campus:"Pilani",program:"B.E. Civil",cutoff_score_2025:206,cutoff_score_2024:238,cutoff_score_2023:213},
+{campus:"Pilani",program:"B.E. Electrical & Electronics",cutoff_score_2025:260,cutoff_score_2024:292,cutoff_score_2023:272},
+{campus:"Pilani",program:"B.E. Mechanical",cutoff_score_2025:235,cutoff_score_2024:266,cutoff_score_2023:244},
+{campus:"Pilani",program:"B.E. Computer Science",cutoff_score_2025:304,cutoff_score_2024:327,cutoff_score_2023:331},
+{campus:"Pilani",program:"B.E. Electronics & Instrumentation",cutoff_score_2025:250,cutoff_score_2024:282,cutoff_score_2023:266},
+{campus:"Pilani",program:"B.E. Electronics & Communication",cutoff_score_2025:285,cutoff_score_2024:314,cutoff_score_2023:296},
+{campus:"Pilani",program:"B.E. Manufacturing",cutoff_score_2025:211,cutoff_score_2024:243,cutoff_score_2023:220},
+{campus:"Pilani",program:"B.E. Mathematics and Computing",cutoff_score_2025:295,cutoff_score_2024:318},
+{campus:"Pilani",program:"B.E. Environmental and Sustainability",cutoff_score_2025:203},
+{campus:"Pilani",program:"B. Pharm",cutoff_score_2025:168,cutoff_score_2024:165,cutoff_score_2023:153},
+{campus:"Pilani",program:"M.Sc. Biological Sciences",cutoff_score_2025:208,cutoff_score_2024:236,cutoff_score_2023:212},
+{campus:"Pilani",program:"M.Sc. Chemistry",cutoff_score_2025:212,cutoff_score_2024:241,cutoff_score_2023:213},
+{campus:"Pilani",program:"M.Sc. Economics",cutoff_score_2025:251,cutoff_score_2024:271,cutoff_score_2023:257},
+{campus:"Pilani",program:"M.Sc. Mathematics",cutoff_score_2025:229,cutoff_score_2024:256,cutoff_score_2023:236},
+{campus:"Pilani",program:"M.Sc. Physics",cutoff_score_2025:223,cutoff_score_2024:254,cutoff_score_2023:235},
+{campus:"Pilani",program:"M.Sc. Semiconductor and Nanoscience",cutoff_score_2025:239},
+  
+{campus:"Goa",program:"B.E. Chemical",cutoff_score_2025:206,cutoff_score_2024:239,cutoff_score_2023:209},
+{campus:"Goa",program:"B.E. Electrical & Electronics",cutoff_score_2025:243,cutoff_score_2024:278,cutoff_score_2023:252},
+{campus:"Goa",program:"B.E. Mechanical",cutoff_score_2025:223,cutoff_score_2024:254,cutoff_score_2023:223},
+{campus:"Goa",program:"B.E. Computer Science",cutoff_score_2025:274,cutoff_score_2024:301,cutoff_score_2023:295},
+{campus:"Goa",program:"B.E. Electronics & Instrumentation",cutoff_score_2025:234,cutoff_score_2024:270,cutoff_score_2023:244},
+{campus:"Goa",program:"B.E. Electronics & Communication",cutoff_score_2025:255,cutoff_score_2024:287,cutoff_score_2023:267},
+{campus:"Goa",program:"B.E. Electronics and Computer",cutoff_score_2025:262},
+{campus:"Goa",program:"B.E. Mathematics and Computing",cutoff_score_2025:268,cutoff_score_2024:295},
+{campus:"Goa",program:"B.E. Environmental and Sustainability",cutoff_score_2025:189},
+{campus:"Goa",program:"M.Sc. Biological Sciences",cutoff_score_2025:203,cutoff_score_2024:234,cutoff_score_2023:204},
+{campus:"Goa",program:"M.Sc. Chemistry",cutoff_score_2025:205,cutoff_score_2024:236,cutoff_score_2023:205},
+{campus:"Goa",program:"M.Sc. Economics",cutoff_score_2025:237,cutoff_score_2024:263,cutoff_score_2023:239},
+{campus:"Goa",program:"M.Sc. Mathematics",cutoff_score_2025:216,cutoff_score_2024:249,cutoff_score_2023:221},
+{campus:"Goa",program:"M.Sc. Physics",cutoff_score_2025:212,cutoff_score_2024:248,cutoff_score_2023:222},
+{campus:"Goa",program:"M.Sc. Semiconductor and Nanoscience",cutoff_score_2025:225},
+
+{campus:"Hyderabad",program:"B.E. Chemical",cutoff_score_2025:205,cutoff_score_2024:238,cutoff_score_2023:207},
+{campus:"Hyderabad",program:"B.E. Civil",cutoff_score_2025:203,cutoff_score_2024:235,cutoff_score_2023:204},
+{campus:"Hyderabad",program:"B.E. Electrical & Electronics",cutoff_score_2025:239,cutoff_score_2024:275,cutoff_score_2023:251},
+{campus:"Hyderabad",program:"B.E. Mechanical",cutoff_score_2025:214,cutoff_score_2024:251,cutoff_score_2023:218},
+{campus:"Hyderabad",program:"B.E. Computer Science",cutoff_score_2025:270,cutoff_score_2024:298,cutoff_score_2023:284},
+{campus:"Hyderabad",program:"B.E. Electronics & Instrumentation",cutoff_score_2025:232,cutoff_score_2024:270,cutoff_score_2023:244},
+{campus:"Hyderabad",program:"B.E. Electronics & Communication",cutoff_score_2025:256,cutoff_score_2024:284,cutoff_score_2023:265},
+{campus:"Hyderabad",program:"B.E. Mathematics and Computing",cutoff_score_2025:266,cutoff_score_2024:293},
+{campus:"Hyderabad",program:"B.E. Environmental and Sustainability",cutoff_score_2025:181},
+{campus:"Hyderabad",program:"B. Pharm",cutoff_score_2025:151,cutoff_score_2024:161,cutoff_score_2023:135},
+{campus:"Hyderabad",program:"M.Sc. Biological Sciences",cutoff_score_2025:203,cutoff_score_2024:234,cutoff_score_2023:204},
+{campus:"Hyderabad",program:"M.Sc. Chemistry",cutoff_score_2025:203,cutoff_score_2024:235,cutoff_score_2023:205},
+{campus:"Hyderabad",program:"M.Sc. Economics",cutoff_score_2025:231,cutoff_score_2024:261,cutoff_score_2023:236},
+{campus:"Hyderabad",program:"M.Sc. Mathematics",cutoff_score_2025:212,cutoff_score_2024:247,cutoff_score_2023:219},
+{campus:"Hyderabad",program:"M.Sc. Physics",cutoff_score_2025:209,cutoff_score_2024:245,cutoff_score_2023:219},
+{campus:"Hyderabad",program:"M.Sc. Semiconductor and Nanoscience",cutoff_score_2025:225},
+];
+
+function inRange(score, range) {
+  if (!score && score !== 0) return false;
+  switch(range) {
+    case 'below200': return score < 200;
+    case '200-210':  return score >= 200 && score <= 210;
+    case '210-220':  return score >= 210 && score <= 220;
+    case '220-230':  return score >= 220 && score <= 230;
+    case '230-240':  return score >= 230 && score <= 240;
+    case '240-250':  return score >= 240 && score <= 250;
+    case 'above250': return score > 250;
+    default: return false;
+  }
+}
+
+function filterRange(range) {
+  // toggle button state
+  document.querySelectorAll('.range-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const filtered = cutoffData.filter(d => inRange(d.cutoff_score_2025, range));
+  const grouped = {};
+  filtered.forEach(d => {
+    if (!grouped[d.campus]) grouped[d.campus] = [];
+    grouped[d.campus].push(d);
+  });
+
+  const container = document.getElementById('cutoff-results');
+  if (filtered.length === 0) {
+    container.innerHTML = '<p class="no-results">No programs found in this range for 2025.</p>';
+    return;
+  }
+
+  const campusOrder = ['Pilani','Goa','Hyderabad'];
+  const dotClass = {Pilani:'dot-pilani', Goa:'dot-goa', Hyderabad:'dot-hyd'};
+  let html = '';
+  campusOrder.forEach(campus => {
+    if (!grouped[campus]) return;
+    html += `<div class="campus-group">
+      <div class="campus-group-title">
+        <span class="campus-dot ${dotClass[campus]}"></span>${campus}
+      </div>`;
+    grouped[campus].forEach(p => {
+      html += `<div class="program-card">
+        <span class="program-name">${p.program}</span>
+        <div class="scores-row">
+          <span class="score-chip"><span class="yr">2025</span><span class="val">${p.cutoff_score_2025 ?? '<span class="na">N/A</span>'}</span></span>
+          ${p.cutoff_score_2024 != null ? `<span class="score-chip"><span class="yr">2024</span><span class="val">${p.cutoff_score_2024}</span></span>` : ''}
+          ${p.cutoff_score_2023 != null ? `<span class="score-chip"><span class="yr">2023</span><span class="val">${p.cutoff_score_2023}</span></span>` : ''}
+        </div>
+      </div>`;
+    });
+    html += '</div>';
+  });
+  container.innerHTML = html;
+}
+
+function showPlacement(campus, btn) {
+  document.querySelectorAll('.placement-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.campus-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('pl-' + campus).classList.add('active');
+  btn.classList.add('active');
+}
+
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

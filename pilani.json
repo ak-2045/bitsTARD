@@ -1,0 +1,116 @@
+[
+  {
+    "campus": "Pilani",
+    "program": "B.E. Chemical",
+    "cutoff_score_2025": 210,
+    "cutoff_score_2024": 247,
+    "cutoff_score_2023": 224
+  },
+  {
+    "campus": "Pilani",
+    "program": "B.E. Civil",
+    "cutoff_score_2025": 206,
+    "cutoff_score_2024": 238,
+    "cutoff_score_2023": 213
+  },
+  {
+    "campus": "Pilani",
+    "program": "B.E. Electrical & Electronics",
+    "cutoff_score_2025": 260,
+    "cutoff_score_2024": 292,
+    "cutoff_score_2023": 272
+  },
+  {
+    "campus": "Pilani",
+    "program": "B.E. Mechanical",
+    "cutoff_score_2025": 235,
+    "cutoff_score_2024": 266,
+    "cutoff_score_2023": 244
+  },
+  {
+    "campus": "Pilani",
+    "program": "B.E. Computer Science",
+    "cutoff_score_2025": 304,
+    "cutoff_score_2024": 327,
+    "cutoff_score_2023": 331
+  },
+  {
+    "campus": "Pilani",
+    "program": "B.E. Electronics & Instrumentation",
+    "cutoff_score_2025": 250,
+    "cutoff_score_2024": 282,
+    "cutoff_score_2023": 266
+  },
+  {
+    "campus": "Pilani",
+    "program": "B.E. Electronics & Communication",
+    "cutoff_score_2025": 285,
+    "cutoff_score_2024": 314,
+    "cutoff_score_2023": 296
+  },
+  {
+    "campus": "Pilani",
+    "program": "B.E. Manufacturing",
+    "cutoff_score_2025": 211,
+    "cutoff_score_2024": 243,
+    "cutoff_score_2023": 220
+  },
+  {
+    "campus": "Pilani",
+    "program": "B.E. Mathematics and Computing",
+    "cutoff_score_2025": 295,
+    "cutoff_score_2024": 318
+  },
+  {
+    "campus": "Pilani",
+    "program": "B.E. Environmental and Sustainability",
+    "cutoff_score_2025": 203
+  },
+  {
+    "campus": "Pilani",
+    "program": "B. Pharm",
+    "cutoff_score_2025": 168,
+    "cutoff_score_2024": 165,
+    "cutoff_score_2023": 153
+  },
+  {
+    "campus": "Pilani",
+    "program": "M.Sc. Biological Sciences",
+    "cutoff_score_2025": 208,
+    "cutoff_score_2024": 236,
+    "cutoff_score_2023": 212
+  },
+  {
+    "campus": "Pilani",
+    "program": "M.Sc. Chemistry",
+    "cutoff_score_2025": 212,
+    "cutoff_score_2024": 241,
+    "cutoff_score_2023": 213
+  },
+  {
+    "campus": "Pilani",
+    "program": "M.Sc. Economics",
+    "cutoff_score_2025": 251,
+    "cutoff_score_2024": 271,
+    "cutoff_score_2023": 257
+  },
+  {
+    "campus": "Pilani",
+    "program": "M.Sc. Mathematics",
+    "cutoff_score_2025": 229,
+    "cutoff_score_2024": 256,
+    "cutoff_score_2023": 236
+  },
+  {
+    "campus": "Pilani",
+    "program": "M.Sc. Physics",
+    "cutoff_score_2025": 223,
+    "cutoff_score_2024": 254,
+    "cutoff_score_2023": 235
+  },
+  {
+    "campus": "Pilani",
+    "program": "M.Sc. Semiconductor and Nanoscience",
+    "cutoff_score_2025": 239
+  }
+]

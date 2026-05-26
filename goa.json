@@ -1,0 +1,100 @@
+[
+  {
+    "campus": "Goa",
+    "program": "B.E. Chemical",
+    "cutoff_score_2025": 206,
+    "cutoff_score_2024": 239,
+    "cutoff_score_2023": 209
+  },
+  {
+    "campus": "Goa",
+    "program": "B.E. Electrical & Electronics",
+    "cutoff_score_2025": 243,
+    "cutoff_score_2024": 278,
+    "cutoff_score_2023": 252
+  },
+  {
+    "campus": "Goa",
+    "program": "B.E. Mechanical",
+    "cutoff_score_2025": 223,
+    "cutoff_score_2024": 254,
+    "cutoff_score_2023": 223
+  },
+  {
+    "campus": "Goa",
+    "program": "B.E. Computer Science",
+    "cutoff_score_2025": 274,
+    "cutoff_score_2024": 301,
+    "cutoff_score_2023": 295
+  },
+  {
+    "campus": "Goa",
+    "program": "B.E. Electronics & Instrumentation",
+    "cutoff_score_2025": 234,
+    "cutoff_score_2024": 270,
+    "cutoff_score_2023": 244
+  },
+  {
+    "campus": "Goa",
+    "program": "B.E. Electronics & Communication",
+    "cutoff_score_2025": 255,
+    "cutoff_score_2024": 287,
+    "cutoff_score_2023": 267
+  },
+  {
+    "campus": "Goa",
+    "program": "B.E. Electronics and Computer",
+    "cutoff_score_2025": 262
+  },
+  {
+    "campus": "Goa",
+    "program": "B.E. Mathematics and Computing",
+    "cutoff_score_2025": 268,
+    "cutoff_score_2024": 295
+  },
+  {
+    "campus": "Goa",
+    "program": "B.E. Environmental and Sustainability",
+    "cutoff_score_2025": 189
+  },
+  {
+    "campus": "Goa",
+    "program": "M.Sc. Biological Sciences",
+    "cutoff_score_2025": 203,
+    "cutoff_score_2024": 234,
+    "cutoff_score_2023": 204
+  },
+  {
+    "campus": "Goa",
+    "program": "M.Sc. Chemistry",
+    "cutoff_score_2025": 205,
+    "cutoff_score_2024": 236,
+    "cutoff_score_2023": 205
+  },
+  {
+    "campus": "Goa",
+    "program": "M.Sc. Economics",
+    "cutoff_score_2025": 237,
+    "cutoff_score_2024": 263,
+    "cutoff_score_2023": 239
+  },
+  {
+    "campus": "Goa",
+    "program": "M.Sc. Mathematics",
+    "cutoff_score_2025": 216,
+    "cutoff_score_2024": 249,
+    "cutoff_score_2023": 221
+  },
+  {
+    "campus": "Goa",
+    "program": "M.Sc. Physics",
+    "cutoff_score_2025": 212,
+    "cutoff_score_2024": 248,
+    "cutoff_score_2023": 222
+  },
+  {
+    "campus": "Goa",
+    "program": "M.Sc. Semiconductor and Nanoscience",
+    "cutoff_score_2025": 225
+  }
+]

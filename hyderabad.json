@@ -1,0 +1,109 @@
+[
+  {
+    "campus": "Hyderabad",
+    "program": "B.E. Chemical",
+    "cutoff_score_2025": 205,
+    "cutoff_score_2024": 238,
+    "cutoff_score_2023": 207
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "B.E. Civil",
+    "cutoff_score_2025": 203,
+    "cutoff_score_2024": 235,
+    "cutoff_score_2023": 204
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "B.E. Electrical & Electronics",
+    "cutoff_score_2025": 239,
+    "cutoff_score_2024": 275,
+    "cutoff_score_2023": 251
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "B.E. Mechanical",
+    "cutoff_score_2025": 214,
+    "cutoff_score_2024": 251,
+    "cutoff_score_2023": 218
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "B.E. Computer Science",
+    "cutoff_score_2025": 270,
+    "cutoff_score_2024": 298,
+    "cutoff_score_2023": 284
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "B.E. Electronics & Instrumentation",
+    "cutoff_score_2025": 232,
+    "cutoff_score_2024": 270,
+    "cutoff_score_2023": 244
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "B.E. Electronics & Communication",
+    "cutoff_score_2025": 256,
+    "cutoff_score_2024": 284,
+    "cutoff_score_2023": 265
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "B.E. Mathematics and Computing",
+    "cutoff_score_2025": 266,
+    "cutoff_score_2024": 293
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "B.E. Environmental and Sustainability",
+    "cutoff_score_2025": 181
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "B. Pharm",
+    "cutoff_score_2025": 151,
+    "cutoff_score_2024": 161,
+    "cutoff_score_2023": 135
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "M.Sc. Biological Sciences",
+    "cutoff_score_2025": 203,
+    "cutoff_score_2024": 234,
+    "cutoff_score_2023": 204
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "M.Sc. Chemistry",
+    "cutoff_score_2025": 203,
+    "cutoff_score_2024": 235,
+    "cutoff_score_2023": 205
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "M.Sc. Economics",
+    "cutoff_score_2025": 231,
+    "cutoff_score_2024": 261,
+    "cutoff_score_2023": 236
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "M.Sc. Mathematics",
+    "cutoff_score_2025": 212,
+    "cutoff_score_2024": 247,
+    "cutoff_score_2023": 219
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "M.Sc. Physics",
+    "cutoff_score_2025": 209,
+    "cutoff_score_2024": 245,
+    "cutoff_score_2023": 219
+  },
+  {
+    "campus": "Hyderabad",
+    "program": "M.Sc. Semiconductor and Nanoscience",
+    "cutoff_score_2025": 225
+  }
+]
